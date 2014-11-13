@@ -24,7 +24,7 @@ var fetchLatestASX = function(){
     var added = 0;
 
     var bodyToSave;
-    var asxcode;
+    var asxcodetosave;
 
     for (var i=result.data.results['ASX ANNOCEMENTS'].length - 1; i > 0 ; i--){            
       if (added > limit) break;
@@ -33,10 +33,10 @@ var fetchLatestASX = function(){
 
       if(!Posts.findOne({ url : announcement.Link.href } )){
         bodyToSave = 'Pages(' + announcement.Pages + '), announced at ' + announcement.AnnonceTime;
-        asxcode = announcement.ASX;
+        asxcodetosave = announcement.ASX;
 
         saveASXPost({
-          asxcode: asxcode,
+          asxcode: asxcodetosave,
           body: bodyToSave,
           url:  announcement.Link.href,
           title: announcement.Annocement
@@ -133,7 +133,7 @@ Meteor.startup(function() {
           var considered = 0;
 
           var bodyToSave;
-
+          var asxcodetosave;
           for (var i=result.data.results['ASX ANNOCEMENTS'].length - 1; i > 0 ; i--){            
             if (considered > limit) break;
             announcement = result.data.results['ASX ANNOCEMENTS'][i];
@@ -141,8 +141,9 @@ Meteor.startup(function() {
 
             if(!Posts.findOne({ url : announcement.Link.href } )){
               bodyToSave = 'Pages(' + announcement.Pages + '), announced at ' + announcement.AnnonceTime;
-              
+              asxcodetosave = announcement.ASX;
               saveASXPost({
+                asxcode: asxcodetosave,
                 body: bodyToSave,
                 url:  announcement.Link.href,
                 title: announcement.Annocement
