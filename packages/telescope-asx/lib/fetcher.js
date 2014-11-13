@@ -68,7 +68,7 @@ var saveASXPost = function(asxPost){
       upvoters: [],
       upvotes: 0,
       url: asxPost.url,
-      userId: "hGdywRaQynkC9zdRT", //TODO the ID of the user name under which posts should be posted
+      userId: "mhjZudS73hMXPPqDB", //TODO the ID of the user name under which posts should be posted
     };
     //Posts.insert(properties);
     console.log("Inserted fetched ASX Post ID: ", Posts.insert(properties));
