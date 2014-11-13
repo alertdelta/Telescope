@@ -24,6 +24,7 @@ var fetchLatestASX = function(){
     var added = 0;
 
     var bodyToSave;
+    var asxcode;
 
     for (var i=result.data.results['ASX ANNOCEMENTS'].length - 1; i > 0 ; i--){            
       if (added > limit) break;
@@ -32,8 +33,10 @@ var fetchLatestASX = function(){
 
       if(!Posts.findOne({ url : announcement.Link.href } )){
         bodyToSave = 'Pages(' + announcement.Pages + '), announced at ' + announcement.AnnonceTime;
-        
+        asxcode = announcement.ASX;
+
         saveASXPost({
+          asxcode: asxcode,
           body: bodyToSave,
           url:  announcement.Link.href,
           title: announcement.Annocement
@@ -55,6 +58,7 @@ var saveASXPost = function(asxPost){
   var properties = {
       baseScore: 1,
       body: asxPost.body, //'Today is a Sunday',
+      asxcode: asxPost.asxcode,
       commentsCount: 0,
       createdAt: new Date(),
       downvotes: 0,
@@ -68,7 +72,7 @@ var saveASXPost = function(asxPost){
       upvoters: [],
       upvotes: 0,
       url: asxPost.url,
-      userId: "mhjZudS73hMXPPqDB", //TODO the ID of the user name under which posts should be posted
+      userId: "mhjZudS73hMXPPqDB" //TODO the ID of the user name under which posts should be posted
     };
     //Posts.insert(properties);
     console.log("Inserted fetched ASX Post ID: ", Posts.insert(properties));
