@@ -66,6 +66,7 @@ telescope-update-prompt
 telescope-notifications
 telescope-kadira
 telescope-asx
+telescope-static-pages
 
 # Accounts Templates
 service-configuration
