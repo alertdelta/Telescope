@@ -58,3 +58,5 @@ cat ~/.ssh/id_rsa.pub | ssh -i /Users/michael/Documents/SERVER/AlertDelta02.pem 
 ssh -i /Users/michael/Documents/SERVER/AlertDelta02.pem -v ubuntu@ec2-54-66-141-124.ap-southeast-2.compute.amazonaws.com
 git remote add ec2 ssh://ubuntu@ec2-54-66-141-124.ap-southeast-2.compute.amazonaws.com/home/ubuntu/alertdelta/alertdelta.git
 
+http://www.andrehonsberg.com/article/deploy-meteorjs-vhosts-ubuntu1204-mongodb-apache-proxy
+sudo kill -9 `ps ax | grep node | grep meteor | awk '{print $1}'`
