@@ -1,0 +1,60 @@
+sudo apt-get install git
+sudo apt-get install gem
+gem install capistrano
+sudo apt-get install capistrano
+Capistrano v2.12.0
+gem install capifony
+cd path/to/your/project
+capifony .
+
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+
+
+sudo mkdir -p /var/git/alertdelta.git
+cd /var/git/alertdelta.git
+sudo git init --bare
+cd ~/alertdelta
+sudo git init
+sudo git add .
+sudo git commit -m "intitial live site commit"
+git config --global user.name "alertdelta"
+git config --global user.email vprmedia@gmail.com
+   git commit --amend --reset-author
+nano .git/config
+    [remote "hub"]
+    url = /var/git/alertdelta.git
+    fetch = +refs/heads/*:refs/remotes/hub/*
+
+sudo nano /var/git/alertdelta.git/hooks/post-update
+
+#!/bin/sh
+echo
+echo "**** Pulling changes into Live [Hub's post-update hook]"
+echo
+cd ~/alertdelat || exit
+unset GIT_DIR
+git pull hub master
+exec git-update-server-info
+
+sudo nano ~/alertdelta/.git/hooks/post-commit
+
+#!/bin/sh
+echo
+echo "**** pushing changes to Hub [Live's post-commit hook]"
+echo
+git push hub
+
+sudo chmod +x /var/git/alertdelta.git/hooks/post-update
+sudo chmod +x ~/alertdelta/.git/hooks/post-commit
+
+sudo chown -R ubuntu /var/git/
+sudo chown -R ubuntu ~/alertdelta
+
+
+cat ~/.ssh/id_rsa.pub | ssh -i /Users/michael/Documents/SERVER/AlertDelta02.pem ubuntu@ec2-54-66-141-124.ap-southeast-2.compute.amazonaws.co "cat>> .ssh/authorized_keys"
+ssh -i /Users/michael/Documents/SERVER/AlertDelta02.pem -v ubuntu@ec2-54-66-141-124.ap-southeast-2.compute.amazonaws.com
+git remote add ec2 ssh://ubuntu@ec2-54-66-141-124.ap-southeast-2.compute.amazonaws.com/home/ubuntu/alertdelta/alertdelta.git
+
