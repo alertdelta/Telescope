@@ -61,10 +61,10 @@ telescope-i18n
 telescope-email
 telescope-update-prompt
 telescope-notifications
-telescope-kadira
+//telescope-kadira
 telescope-update-prompt
 telescope-notifications
-telescope-kadira
+//telescope-kadira
 telescope-asx
 telescope-static-pages
 
