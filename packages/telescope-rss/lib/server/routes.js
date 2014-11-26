@@ -1,25 +1,29 @@
 Meteor.startup(function () {
 
-  // Post RSS
+  Router.map(function() {
 
-  Router.route('/feed.xml', {
-    name: 'feed',
-    where: 'server',
-    action: function() {
-      this.response.write(servePostRSS());
-      this.response.end();
-    }
-  });
+    // Post RSS
 
-  // Comment RSS
+    this.route('feed', {
+      where: 'server',
+      path: '/feed.xml',
+      action: function() {
+        this.response.write(servePostRSS());
+        this.response.end();
+      }
+    });
 
-  Router.route('/rss/comments.xml', {
-    name: 'rss_comments',
-    where: 'server',
-    action: function() {
-      this.response.write(serveCommentRSS());
-      this.response.end();
-    }
+    // Comment RSS
+
+    this.route('rss_comments', {
+      where: 'server',
+      path: '/rss/comments.xml',
+      action: function() {
+        this.response.write(serveCommentRSS());
+        this.response.end();
+      }
+    });
+
   });
 
 });

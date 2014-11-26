@@ -10,17 +10,17 @@ Package.onUse(function (api) {
     'telescope-lib',
     'telescope-base',
     'telescope-email',
-    'iron:router',
-    'kestanous:herald@1.1.3',
-    'kestanous:herald-email'
+    'kestanous:herald@0.6.0',
+    'kestanous:herald-email@0.2.1'
   ], ['client', 'server']);
 
   api.use([
+    'iron:router',
     'jquery',
     'underscore',
     'templating',
     'tracker'
-  ], ['client']);
+  ], 'client');
 
   api.use([
     'cmather:handlebars-server'
@@ -43,8 +43,7 @@ Package.onUse(function (api) {
   ], ['client']);
 
   api.add_files([
-    'lib/server/notifications-server.js',
-    'lib/server/routes.js'
+    'lib/server/notifications-server.js'
   ], ['server']);
   
   api.export([

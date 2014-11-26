@@ -32,7 +32,7 @@ Meteor.startup(function () {
       if(
             getSetting('showBanner', false) == false
         ||  !canView(Meteor.user())
-        ||  Router.current().location.get().path != '/' 
+        ||  Router.current().path != '/' 
         ||  Cookie.get('showBanner') == "no" 
         ||  (Meteor.user() && getUserSetting('showBanner', true) == false) 
         ||  (Meteor.user() && getUserSetting('subscribedToNewsletter', false) == true) 
